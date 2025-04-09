@@ -4,6 +4,7 @@
     <File Path="Directory.Build.props" />
     <File Path="LICENSE" />
     <File Path="README.md" />
+    <File Path="Todo.txt" />
     <File Path="version.props" />
   </Folder>
   <Folder Name="/src/">
