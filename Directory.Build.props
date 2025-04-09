@@ -1,0 +1,32 @@
+<Project>
+
+	<!--<Import Project="version.props" />-->
+
+	<PropertyGroup>
+		<Authors>Fons Sonnemans</Authors>
+		<Copyright>Copyright © Reflection IT</Copyright>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/sonnemaf/ReflectionIT.ComparisonOperatorsGenerator</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/sonnemaf/ReflectionIT.ComparisonOperatorsGenerator</RepositoryUrl>
+		<PackageTags>ComparisonOperators IComparable sourcegenerator generator generation codegen codegenerator codegeneration</PackageTags>
+		<RepositoryType>git</RepositoryType>
+		<CheckEolTargetFramework>false</CheckEolTargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<DebugType>embedded</DebugType>
+		<NoPackageAnalysis>true</NoPackageAnalysis>
+		<LangVersion>latest</LangVersion>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<PackageOutputPath>$(MSBuildThisFileDirectory)\artifacts</PackageOutputPath>
+	</PropertyGroup>
+
+	<!--  Reproducible build properties-->
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="*" PrivateAssets="All"/>
+	</ItemGroup>
+
+</Project>
