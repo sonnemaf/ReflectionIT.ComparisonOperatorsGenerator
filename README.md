@@ -21,8 +21,8 @@ using ReflectionIT.ComparisonOperatorsGenerator.Attributes;
 [ComparisonOperators]
 partial class Point : IComparable<Point> {
 
-    public readonly double X;
-    public readonly double Y;
+    public double X { get; }
+    public double Y { get; }
 
     public Point(double x, double y) {
         this.X = x;
