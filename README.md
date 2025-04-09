@@ -5,7 +5,15 @@ A Source Generator package that generates the `>`, `>=`, `<`, `<=` operators for
 
 Generating these additional operators is as simple as adding the `ComparisonOperators` attribute to your type. Make sure this type is `partial` and implements `System.IComparable<T>`
 
+# NuGet packages
+
+| Package | Version |
+| ------ | ------ |
+| ReflectionIT.ComparisonOperatorsGenerator | [![NuGet](https://img.shields.io/nuget/v/ReflectionIT.ComparisonOperatorsGenerator)](https://www.nuget.org/packages/ReflectionIT.ComparisonOperatorsGenerator/) |         
+
 ## Example
+
+Add the NuGet package and write the following code:
 
 ```cs
 using ReflectionIT.ComparisonOperatorsGenerator.Attributes;
