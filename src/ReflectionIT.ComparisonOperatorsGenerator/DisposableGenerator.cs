@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Immutable;
-using System.Diagnostics;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -13,55 +11,54 @@ namespace ReflectionIT.ComparisonOperatorsGenerator;
 public class DisposableGenerator : IIncrementalGenerator {
 
     public void Initialize(IncrementalGeneratorInitializationContext context) {
+
         context.RegisterPostInitializationOutput(ctx => ctx.AddSource(
             "ComparisonOperatorsGenerator.Attributes.g.cs", SourceText.From(SourceGenerationHelper.Attribute, Encoding.UTF8)));
-        {
-            IncrementalValuesProvider<ClassDeclarationSyntax> classDeclarations = context.SyntaxProvider
-                .CreateSyntaxProvider(
-                    predicate: static (s, _) => IsSyntaxTargetForClassGeneration(s),
-                    transform: static (ctx, _) => GetSemanticTargetForClassGeneration(ctx))
-                .Where(static m => m is not null)!;
 
-            IncrementalValueProvider<(Compilation, ImmutableArray<ClassDeclarationSyntax>)> compilationAndClasses
-                = context.CompilationProvider.Combine(classDeclarations.Collect());
+        // Classes
+        IncrementalValuesProvider<ClassDeclarationSyntax> classDeclarations = context.SyntaxProvider
+            .CreateSyntaxProvider(
+                predicate: static (s, _) => IsSyntaxTargetForClassGeneration(s),
+                transform: static (ctx, _) => GetSemanticTargetForClassGeneration(ctx))
+            .Where(static m => m is not null)!;
 
-            context.RegisterSourceOutput(compilationAndClasses,
-                static (spc, source) => Execute(source.Item1, source.Item2, spc));
-        }
+        IncrementalValueProvider<(Compilation, ImmutableArray<ClassDeclarationSyntax>)> compilationAndClasses
+            = context.CompilationProvider.Combine(classDeclarations.Collect());
 
-        {
-            IncrementalValuesProvider<StructDeclarationSyntax> structDeclarations = context.SyntaxProvider
-                .CreateSyntaxProvider(
-                    predicate: static (s, _) => IsSyntaxTargetForStructGeneration(s),
-                    transform: static (ctx, _) => GetSemanticTargetForStructGeneration(ctx))
-                .Where(static m => m is not null)!;
+        context.RegisterSourceOutput(compilationAndClasses,
+            static (spc, source) => Execute(source.Item1, source.Item2, spc));
 
-            IncrementalValueProvider<(Compilation, ImmutableArray<StructDeclarationSyntax>)> compilationAndClasses
-                = context.CompilationProvider.Combine(structDeclarations.Collect());
+        // Structs
+        IncrementalValuesProvider<StructDeclarationSyntax> structDeclarations = context.SyntaxProvider
+            .CreateSyntaxProvider(
+                predicate: static (s, _) => IsSyntaxTargetForStructGeneration(s),
+                transform: static (ctx, _) => GetSemanticTargetForStructGeneration(ctx))
+            .Where(static m => m is not null)!;
 
-            context.RegisterSourceOutput(compilationAndClasses,
-                static (spc, source) => Execute(source.Item1, source.Item2, spc));
-        }
+        IncrementalValueProvider<(Compilation, ImmutableArray<StructDeclarationSyntax>)> compilationAndStructs
+            = context.CompilationProvider.Combine(structDeclarations.Collect());
 
-        {
-            IncrementalValuesProvider<RecordDeclarationSyntax> structDeclarations = context.SyntaxProvider
-                .CreateSyntaxProvider(
-                    predicate: static (s, _) => IsSyntaxTargetForRecordGeneration(s),
-                    transform: static (ctx, _) => GetSemanticTargetForRecordGeneration(ctx))
-                .Where(static m => m is not null)!;
+        context.RegisterSourceOutput(compilationAndStructs,
+            static (spc, source) => Execute(source.Item1, source.Item2, spc));
 
-            IncrementalValueProvider<(Compilation, ImmutableArray<RecordDeclarationSyntax>)> compilationAndClasses
-                = context.CompilationProvider.Combine(structDeclarations.Collect());
+        // Records
+        IncrementalValuesProvider<RecordDeclarationSyntax> recordDeclarations = context.SyntaxProvider
+            .CreateSyntaxProvider(
+                predicate: static (s, _) => IsSyntaxTargetForRecordGeneration(s),
+                transform: static (ctx, _) => GetSemanticTargetForRecordGeneration(ctx))
+            .Where(static m => m is not null)!;
 
-            context.RegisterSourceOutput(compilationAndClasses,
-                static (spc, source) => Execute(source.Item1, source.Item2, spc));
-        }
+        IncrementalValueProvider<(Compilation, ImmutableArray<RecordDeclarationSyntax>)> compilationAndRecords
+            = context.CompilationProvider.Combine(recordDeclarations.Collect());
+
+        context.RegisterSourceOutput(compilationAndRecords,
+            static (spc, source) => Execute(source.Item1, source.Item2, spc));
     }
 
     private static bool IsSyntaxTargetForClassGeneration(SyntaxNode node) =>
         node is ClassDeclarationSyntax m && m.AttributeLists.Count > 0;
 
-    private static bool IsSyntaxTargetForStructGeneration(SyntaxNode node) => 
+    private static bool IsSyntaxTargetForStructGeneration(SyntaxNode node) =>
         node is StructDeclarationSyntax m ? m.AttributeLists.Count > 0 : false;
 
     private static bool IsSyntaxTargetForRecordGeneration(SyntaxNode node) =>
@@ -161,7 +158,7 @@ public class DisposableGenerator : IIncrementalGenerator {
 
         foreach (TypeToGenerate classToGenerate in classesToGenerate) {
             string result = SourceGenerationHelper.ImplementComparisonOperators(classToGenerate);
-            context.AddSource(classToGenerate.Name + "ComparisonOperators.g.cs", SourceText.From(result, Encoding.UTF8));
+            context.AddSource($"{classToGenerate.FullName}.g.cs", SourceText.From(result, Encoding.UTF8));
         }
     }
 
@@ -178,7 +175,7 @@ public class DisposableGenerator : IIncrementalGenerator {
 
         foreach (TypeToGenerate classToGenerate in classesToGenerate) {
             string result = SourceGenerationHelper.ImplementComparisonOperators(classToGenerate);
-            context.AddSource(classToGenerate.Name + "ComparisonOperators.g.cs", SourceText.From(result, Encoding.UTF8));
+            context.AddSource($"{classToGenerate.FullName}.g.cs", SourceText.From(result, Encoding.UTF8));
         }
     }
 
@@ -195,7 +192,7 @@ public class DisposableGenerator : IIncrementalGenerator {
 
         foreach (TypeToGenerate classToGenerate in classesToGenerate) {
             string result = SourceGenerationHelper.ImplementComparisonOperators(classToGenerate);
-            context.AddSource(classToGenerate.Name + "ComparisonOperators.g.cs", SourceText.From(result, Encoding.UTF8));
+            context.AddSource($"{classToGenerate.FullName}.g.cs", SourceText.From(result, Encoding.UTF8));
         }
     }
 

@@ -1,2 +1,3 @@
 Todo:
-- Code cleanup: class/struct/record
+- Duplicate code cleanup: Generic solution for class/struct/record
+- UnitTests
