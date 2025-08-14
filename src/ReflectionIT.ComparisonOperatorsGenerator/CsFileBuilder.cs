@@ -131,6 +131,12 @@ public sealed class CsFileBuilder : ICsFileBuilder
         return this;
     }
 
+    public ICsFileBuilder AddPreprocessorDirectives() {
+        AddStatements("#pragma warning disable",
+                      "#nullable enable annotations");
+        return this;
+    }
+
     private void GoOneLevelInside()
     {
         _indentedTextWriter.WriteLine("{");

@@ -4,6 +4,7 @@
 
 	<PropertyGroup>
 		<Authors>Fons Sonnemans</Authors>
+        <Company>Reflection IT</Company>
 		<Copyright>Copyright © Reflection IT</Copyright>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -12,8 +13,8 @@
 		<PackageTags>ComparisonOperators IComparable sourcegenerator generator generation codegen codegenerator codegeneration</PackageTags>
 		<RepositoryType>git</RepositoryType>
 		<CheckEolTargetFramework>false</CheckEolTargetFramework>
-        <Version>0.1.2</Version>
-        <PackageVersion>0.1.2-preview</PackageVersion>
+        <Version>1.0.0</Version>
+        <PackageVersion>1.0.0</PackageVersion>
 		<DebugType>embedded</DebugType>
 		<NoPackageAnalysis>true</NoPackageAnalysis>
 		<LangVersion>latest</LangVersion>
