@@ -11,8 +11,7 @@
 		<Description>A Source Generator package that generates the `&gt;`, `&gt;=`, `&lt;`, `&lt;=` operators for a `partial` type (`class`, `struct` or `record`) which implements`IComparable&lt;T&gt;`.</Description>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageReleaseNotes>
-            Preprocessor Directives (#pragma warning disable and #nullable enable annotations) added to the generated files
-            1.0 release, not a preview any more
+            SourceGenerator type name change, no feature change
         </PackageReleaseNotes>
 		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
     </PropertyGroup>

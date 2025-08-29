@@ -8,7 +8,7 @@ using ReflectionIT.ComparisonOperatorsGenerator.Attributes;
 namespace ReflectionIT.ComparisonOperatorsGenerator;
 
 [Generator]
-public class DisposableGenerator : IIncrementalGenerator {
+public class SourceGenerator : IIncrementalGenerator {
 
     public void Initialize(IncrementalGeneratorInitializationContext context) {
 
