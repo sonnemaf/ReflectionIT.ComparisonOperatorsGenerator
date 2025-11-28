@@ -29,8 +29,6 @@ partial class Point : IComparable<Point> {
         this.Y = y;
     }
 
-    public void Swap() => new Point(this.Y, this.X);
-
     public double Dist => Math.Sqrt((X * X) + (Y * Y));
 
     public override string ToString() => $"({X},{Y})";

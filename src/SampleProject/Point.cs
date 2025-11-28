@@ -3,7 +3,7 @@
 namespace SampleProject;
 
 [ComparisonOperators]
-partial class Point : IComparable<Point> {
+public partial class Point : IComparable<Point> {
 
     public readonly double X;
     public readonly double Y;
@@ -13,8 +13,6 @@ partial class Point : IComparable<Point> {
         this.Y = y;
     }
 
-    public void Swap() => new Point(this.Y, this.X);
-
     public double Dist => Math.Sqrt((X * X) + (Y * Y));
 
     public override string ToString() => $"({X},{Y})";
@@ -23,4 +21,3 @@ partial class Point : IComparable<Point> {
         return Comparer<double?>.Default.Compare(this.Dist, other?.Dist);
     }
 }
-

@@ -12,4 +12,5 @@
     <Project Path="src/ReflectionIT.ComparisonOperatorsGenerator/ReflectionIT.ComparisonOperatorsGenerator.csproj" />
     <Project Path="src/SampleProject/SampleProject.csproj" />
   </Folder>
+  <Project Path="ReflectionIT.ComparisonOperatorsGenerator.Test/ReflectionIT.ComparisonOperatorsGenerator.Test.csproj" Id="01d02bbc-e151-4848-88ee-cb3da1be0db1" />
 </Solution>
