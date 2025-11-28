@@ -15,8 +15,7 @@ public static class SourceGenerationHelper {
                      .AddPreprocessorDirectives()
                      .AddEmptyLine();
 
-        bool hasNamespace = !type.ContainingNamespace.IsGlobalNamespace;
-        csFileBuilder.AddNamespace(type.ContainingNamespace.Name, hasNamespace);
+        csFileBuilder.AddNamespace(type.ContainingNamespace);
 
         GenerateBaseImplementation(csFileBuilder, type);
 

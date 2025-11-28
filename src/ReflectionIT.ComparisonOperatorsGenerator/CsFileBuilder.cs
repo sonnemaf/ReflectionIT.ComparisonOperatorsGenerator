@@ -36,6 +36,12 @@ public sealed class CsFileBuilder : ICsFileBuilder {
         return this;
     }
 
+    public ICsFileBuilder AddNamespace(INamespaceSymbol namespaceSymbol) {
+        return namespaceSymbol.IsGlobalNamespace 
+            ? this 
+            : AddNamespace(namespaceSymbol.ToDisplayString());
+    }
+
     public ICsFileBuilder AddFileScopedNamespace(string namespaceName, bool condition) {
         if (condition is false) {
             return this;

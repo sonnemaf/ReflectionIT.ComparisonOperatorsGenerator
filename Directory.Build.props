@@ -14,7 +14,7 @@
 		<RepositoryType>git</RepositoryType>
 		<CheckEolTargetFramework>false</CheckEolTargetFramework>
         <Version>1.1.0</Version>
-        <PackageVersion>1.1.0</PackageVersion>
+        <PackageVersion>1.1.1</PackageVersion>
 		<DebugType>embedded</DebugType>
 		<NoPackageAnalysis>true</NoPackageAnalysis>
 		<LangVersion>latest</LangVersion>

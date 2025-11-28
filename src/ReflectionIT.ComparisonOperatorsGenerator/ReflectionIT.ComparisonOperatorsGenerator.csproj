@@ -12,7 +12,7 @@
 		<Description>A Source Generator package that generates the `&gt;`, `&gt;=`, `&lt;`, `&lt;=` operators for a `partial` type (`class`, `struct` or `record`) which implements`IComparable&lt;T&gt;`.</Description>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageReleaseNotes>
-			Support added for Nested and Generic types
+			Nested Namespace bug fix
 		</PackageReleaseNotes>
 		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 	</PropertyGroup>

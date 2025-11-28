@@ -9,6 +9,7 @@ public interface ICsFileBuilder : IDisposable {
     ICsFileBuilder AddUsing(string usingStatement);
     ICsFileBuilder AddFileScopedNamespace(string namespaceName, bool condition);
     ICsFileBuilder AddNamespace(string? namespaceName, bool condition);
+    ICsFileBuilder AddNamespace(INamespaceSymbol containingNamespace);
     ICsFileBuilder AddCommentLine(string line);
     ICsFileBuilder AddXmlCommentLines(params ReadOnlySpan<string> lines);
     ICsFileBuilder AddEmptyLine(bool condition = true);
@@ -28,5 +29,4 @@ public interface ICsFileBuilder : IDisposable {
     ICsFileBuilder EndPartial(ITypeSymbol typeSymbol);
 
     string Build();
-
 }
