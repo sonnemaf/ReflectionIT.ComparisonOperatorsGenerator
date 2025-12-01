@@ -9,8 +9,11 @@
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = false)]
 public class ComparisonOperatorsAttribute : Attribute {
 
+#pragma warning disable CS1574 // XML comment has cref attribute that could not be resolved
     /// <summary>
     /// Gets or sets a value indicating whether the <see cref="System.Numerics.IComparisonOperators{TSelf,TOther,TResult}" /> interface should be implemented.
     /// </summary>
     public bool ImplementIComparisonOperatorsInterface { get; set; }
+#pragma warning restore CS1574 // XML comment has cref attribute that could not be resolved
+
 }

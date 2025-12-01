@@ -13,8 +13,8 @@
 		<PackageTags>ComparisonOperators IComparable sourcegenerator generator generation codegen codegenerator codegeneration</PackageTags>
 		<RepositoryType>git</RepositoryType>
 		<CheckEolTargetFramework>false</CheckEolTargetFramework>
-        <Version>1.1.0</Version>
-        <PackageVersion>1.1.1</PackageVersion>
+        <Version>1.1.2</Version>
+        <PackageVersion>1.1.2</PackageVersion>
 		<DebugType>embedded</DebugType>
 		<NoPackageAnalysis>true</NoPackageAnalysis>
 		<LangVersion>latest</LangVersion>

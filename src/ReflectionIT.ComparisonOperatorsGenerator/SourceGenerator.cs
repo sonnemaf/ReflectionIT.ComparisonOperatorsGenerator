@@ -3,7 +3,6 @@ using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
-using ReflectionIT.ComparisonOperatorsGenerator.Attributes;
 
 namespace ReflectionIT.ComparisonOperatorsGenerator;
 
@@ -15,7 +14,7 @@ public class SourceGenerator : IIncrementalGenerator {
     public void Initialize(IncrementalGeneratorInitializationContext context) {
 
         context.RegisterPostInitializationOutput(ctx => ctx.AddSource(
-            "ComparisonOperatorsGenerator.Attributes.g.cs", SourceText.From(SourceGenerationHelper.Attribute, Encoding.UTF8)));
+            $"{FullyQualifiedAttributeName}.g.cs", SourceText.From(SourceGenerationHelper.Attribute, Encoding.UTF8)));
 
         var classDeclarations = context.SyntaxProvider.ForAttributeWithMetadataName(
            FullyQualifiedAttributeName,
@@ -38,8 +37,14 @@ public class SourceGenerator : IIncrementalGenerator {
         }
 
         foreach (var typeSymbol in typeSymbols) {
+            var filename = typeSymbol.ToDisplayString()
+                              .Replace('<', '{')
+                              .Replace('>', '}')
+                              .Replace(" ", string.Empty);
+
             string result = SourceGenerationHelper.ImplementComparisonOperators(typeSymbol);
-            context.AddSource($"{typeSymbol.ToDisplayString().Replace("<", "Of").Replace(">", string.Empty)}.g.cs", SourceText.From(result, Encoding.UTF8));
+
+            context.AddSource($"{filename}.g.cs", SourceText.From(result, Encoding.UTF8));
         }
     }
 }
